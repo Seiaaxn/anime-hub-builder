@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ArrowLeft, Shield, Crown, Ban, Tag as TagIcon, Search, Loader2, Check } from "lucide-react";
+import { ArrowLeft, Shield, Crown, Ban, Tag as TagIcon, Search, Loader2, Check, Film } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth } from "@/lib/useAuth";
 import { isAdmin } from "@/lib/roles";
