@@ -1,10 +1,11 @@
 import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { svGenre, svToCard } from "@/lib/sankavollerei";
 import type { AnimeCard } from "@/lib/anime-types";
 import { PortraitGrid } from "@/components/AnimeBlocks";
+import { useCustomAnimes, customAnimeToCard } from "@/lib/custom-anime";
 
 export const Route = createFileRoute("/genre/$genreId")({
   component: GenrePage,
