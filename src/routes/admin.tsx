@@ -121,6 +121,23 @@ function AdminPanel() {
       </header>
 
       <main className="max-w-5xl mx-auto px-4 mt-6">
+        <Link
+          to="/upload-anime"
+          className="mb-4 flex items-center gap-3 rounded-2xl border border-primary/40 bg-primary/10 hover:bg-primary/20 transition p-4 group"
+        >
+          <div className="h-12 w-12 grid place-items-center rounded-xl bg-primary/20 text-primary">
+            <Film className="h-6 w-6" />
+          </div>
+          <div className="flex-1">
+            <div className="font-black tracking-wider text-sm">UPLOAD ANIME</div>
+            <p className="text-xs text-muted-foreground">
+              Buka halaman upload anime (poster, sinopsis, episode dll).
+            </p>
+          </div>
+          <span className="text-xs text-primary font-bold opacity-0 group-hover:opacity-100 transition">
+            BUKA →
+          </span>
+        </Link>
         <div className="rounded-2xl border border-border bg-card/60 p-4">
           <div className="flex items-center gap-2">
             <Search className="h-4 w-4 text-muted-foreground" />
