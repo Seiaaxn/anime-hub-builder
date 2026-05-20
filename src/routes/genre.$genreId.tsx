@@ -105,10 +105,10 @@ function GenrePage() {
         <h1 className="text-2xl font-black mb-5 uppercase tracking-wider flex items-center gap-3">
           <span className="h-6 w-1.5 rounded-full bg-primary" /> {label}
         </h1>
-        {items.length === 0 && !loading && (
+        {merged.length === 0 && !loading && (
           <p className="text-sm text-muted-foreground">Tidak ada anime di genre ini.</p>
         )}
-        {items.length > 0 && <PortraitGrid items={items} onClick={watchAnime} />}
+        {merged.length > 0 && <PortraitGrid items={merged} onClick={watchAnime} />}
         <div className="py-10 grid place-items-center">
           {loading && <Loader2 className="h-8 w-8 animate-spin text-primary" />}
           {!loading && done && items.length > 0 && (
