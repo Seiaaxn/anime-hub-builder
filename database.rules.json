@@ -16,6 +16,7 @@
     "userFlags": {
       ".read": "auth != null",
       "$uid": {
+        ".read": true,
         ".write": "auth != null && (root.child('users/'+auth.uid+'/email').val() === 'ryu694602@gmail.com' || root.child('users/'+auth.uid+'/email').val() === 'zeoxaeon@gmail.com')"
       }
     },
@@ -52,11 +53,18 @@
 
     "globalChat": {
       ".read": true,
-      ".write": "auth != null && !root.child('userFlags/'+auth.uid+'/banned').val()",
+      ".write": "auth != null",
+      ".indexOn": ["ts"],
       "$msgId": {
+        ".read": true,
+        ".write": "auth != null && (!data.exists() ? (newData.child('uid').val() === auth.uid && !root.child('userFlags/'+auth.uid+'/banned').val()) : (data.child('uid').val() === auth.uid || root.child('users/'+auth.uid+'/email').val() === 'ryu694602@gmail.com' || root.child('users/'+auth.uid+'/email').val() === 'zeoxaeon@gmail.com'))",
         ".validate": "newData.hasChildren(['text','uid','ts'])",
-        "uid": { ".validate": "newData.val() === auth.uid" },
-        "text": { ".validate": "newData.isString() && newData.val().length <= 1000" }
+        "uid":  { ".validate": "newData.val() === auth.uid" },
+        "text": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 1000" },
+        "ts":   { ".validate": "newData.val() === now || newData.isNumber()" },
+        "name": { ".validate": "newData.isString() && newData.val().length <= 80" },
+        "photo":{ ".validate": "newData.isString() || newData.val() === null" },
+        "$other": { ".validate": false }
       }
     },
 
