@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { AuthProvider } from "@/lib/useAuth";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -72,20 +74,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "NEXZHU — Streaming Anime Terbaik" },
+      { name: "description", content: "Platform Streaming Anime Terbaik dengan koleksi terlengkap dan server super cepat." },
+      { name: "author", content: "Nexzhu" },
+      { property: "og:title", content: "NEXZHU" },
+      { property: "og:description", content: "Platform Streaming Anime Terbaik." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/jpeg", href: "https://files.catbox.moe/99iprg.jpg" },
+      { rel: "shortcut icon", href: "https://files.catbox.moe/99iprg.jpg" },
+      { rel: "apple-touch-icon", href: "https://files.catbox.moe/99iprg.jpg" },
     ],
   }),
   shellComponent: RootShell,
@@ -113,7 +115,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <AuthProvider>
+        <Outlet />
+        <Toaster richColors position="top-center" />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
