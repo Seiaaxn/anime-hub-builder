@@ -19,6 +19,25 @@ function GenrePage() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const { list: customList } = useCustomAnimes();
+
+  const customMatches = useMemo(() => {
+    const g = genreId.toLowerCase();
+    return customList
+      .filter((a) => (a.genres || []).some((x) => x.toLowerCase() === g))
+      .map(customAnimeToCard);
+  }, [customList, genreId]);
+
+  const merged = useMemo(() => {
+    const seen = new Set<string>();
+    const out: AnimeCard[] = [];
+    for (const c of [...customMatches, ...items]) {
+      if (seen.has(c.id)) continue;
+      seen.add(c.id);
+      out.push(c);
+    }
+    return out;
+  }, [customMatches, items]);
 
   const loadMore = async () => {
     if (loading || done) return;
