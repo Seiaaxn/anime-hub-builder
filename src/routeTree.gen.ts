@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UploadAnimeRouteImport } from './routes/upload-anime'
 import { Route as TrendingRouteImport } from './routes/trending'
 import { Route as TosRouteImport } from './routes/tos'
 import { Route as SearchRouteImport } from './routes/search'
@@ -22,10 +23,14 @@ import { Route as ListListIdRouteImport } from './routes/list.$listId'
 import { Route as GenreGenreIdRouteImport } from './routes/genre.$genreId'
 import { Route as ChatPeerIdRouteImport } from './routes/chat.$peerId'
 import { Route as AnimeAnimeIdRouteImport } from './routes/anime.$animeId'
-import { Route as AdminUploadAnimeRouteImport } from './routes/admin.upload-anime'
 import { Route as UUidFollowingRouteImport } from './routes/u.$uid.following'
 import { Route as UUidFollowersRouteImport } from './routes/u.$uid.followers'
 
+const UploadAnimeRoute = UploadAnimeRouteImport.update({
+  id: '/upload-anime',
+  path: '/upload-anime',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TrendingRoute = TrendingRouteImport.update({
   id: '/trending',
   path: '/trending',
@@ -91,11 +96,6 @@ const AnimeAnimeIdRoute = AnimeAnimeIdRouteImport.update({
   path: '/anime/$animeId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminUploadAnimeRoute = AdminUploadAnimeRouteImport.update({
-  id: '/upload-anime',
-  path: '/upload-anime',
-  getParentRoute: () => AdminRoute,
-} as any)
 const UUidFollowingRoute = UUidFollowingRouteImport.update({
   id: '/following',
   path: '/following',
@@ -109,13 +109,13 @@ const UUidFollowersRoute = UUidFollowersRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteWithChildren
+  '/admin': typeof AdminRoute
   '/dmca': typeof DmcaRoute
   '/home': typeof HomeRoute
   '/search': typeof SearchRoute
   '/tos': typeof TosRoute
   '/trending': typeof TrendingRoute
-  '/admin/upload-anime': typeof AdminUploadAnimeRoute
+  '/upload-anime': typeof UploadAnimeRoute
   '/anime/$animeId': typeof AnimeAnimeIdRoute
   '/chat/$peerId': typeof ChatPeerIdRoute
   '/genre/$genreId': typeof GenreGenreIdRoute
@@ -127,13 +127,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteWithChildren
+  '/admin': typeof AdminRoute
   '/dmca': typeof DmcaRoute
   '/home': typeof HomeRoute
   '/search': typeof SearchRoute
   '/tos': typeof TosRoute
   '/trending': typeof TrendingRoute
-  '/admin/upload-anime': typeof AdminUploadAnimeRoute
+  '/upload-anime': typeof UploadAnimeRoute
   '/anime/$animeId': typeof AnimeAnimeIdRoute
   '/chat/$peerId': typeof ChatPeerIdRoute
   '/genre/$genreId': typeof GenreGenreIdRoute
@@ -146,13 +146,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteWithChildren
+  '/admin': typeof AdminRoute
   '/dmca': typeof DmcaRoute
   '/home': typeof HomeRoute
   '/search': typeof SearchRoute
   '/tos': typeof TosRoute
   '/trending': typeof TrendingRoute
-  '/admin/upload-anime': typeof AdminUploadAnimeRoute
+  '/upload-anime': typeof UploadAnimeRoute
   '/anime/$animeId': typeof AnimeAnimeIdRoute
   '/chat/$peerId': typeof ChatPeerIdRoute
   '/genre/$genreId': typeof GenreGenreIdRoute
@@ -172,7 +172,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/tos'
     | '/trending'
-    | '/admin/upload-anime'
+    | '/upload-anime'
     | '/anime/$animeId'
     | '/chat/$peerId'
     | '/genre/$genreId'
@@ -190,7 +190,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/tos'
     | '/trending'
-    | '/admin/upload-anime'
+    | '/upload-anime'
     | '/anime/$animeId'
     | '/chat/$peerId'
     | '/genre/$genreId'
@@ -208,7 +208,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/tos'
     | '/trending'
-    | '/admin/upload-anime'
+    | '/upload-anime'
     | '/anime/$animeId'
     | '/chat/$peerId'
     | '/genre/$genreId'
@@ -221,12 +221,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRouteWithChildren
+  AdminRoute: typeof AdminRoute
   DmcaRoute: typeof DmcaRoute
   HomeRoute: typeof HomeRoute
   SearchRoute: typeof SearchRoute
   TosRoute: typeof TosRoute
   TrendingRoute: typeof TrendingRoute
+  UploadAnimeRoute: typeof UploadAnimeRoute
   AnimeAnimeIdRoute: typeof AnimeAnimeIdRoute
   ChatPeerIdRoute: typeof ChatPeerIdRoute
   GenreGenreIdRoute: typeof GenreGenreIdRoute
@@ -237,6 +238,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/upload-anime': {
+      id: '/upload-anime'
+      path: '/upload-anime'
+      fullPath: '/upload-anime'
+      preLoaderRoute: typeof UploadAnimeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/trending': {
       id: '/trending'
       path: '/trending'
@@ -328,13 +336,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnimeAnimeIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/upload-anime': {
-      id: '/admin/upload-anime'
-      path: '/upload-anime'
-      fullPath: '/admin/upload-anime'
-      preLoaderRoute: typeof AdminUploadAnimeRouteImport
-      parentRoute: typeof AdminRoute
-    }
     '/u/$uid/following': {
       id: '/u/$uid/following'
       path: '/following'
@@ -352,16 +353,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface AdminRouteChildren {
-  AdminUploadAnimeRoute: typeof AdminUploadAnimeRoute
-}
-
-const AdminRouteChildren: AdminRouteChildren = {
-  AdminUploadAnimeRoute: AdminUploadAnimeRoute,
-}
-
-const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
-
 interface UUidRouteChildren {
   UUidFollowersRoute: typeof UUidFollowersRoute
   UUidFollowingRoute: typeof UUidFollowingRoute
@@ -376,12 +367,13 @@ const UUidRouteWithChildren = UUidRoute._addFileChildren(UUidRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRouteWithChildren,
+  AdminRoute: AdminRoute,
   DmcaRoute: DmcaRoute,
   HomeRoute: HomeRoute,
   SearchRoute: SearchRoute,
   TosRoute: TosRoute,
   TrendingRoute: TrendingRoute,
+  UploadAnimeRoute: UploadAnimeRoute,
   AnimeAnimeIdRoute: AnimeAnimeIdRoute,
   ChatPeerIdRoute: ChatPeerIdRoute,
   GenreGenreIdRoute: GenreGenreIdRoute,

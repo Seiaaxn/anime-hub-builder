@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { fileToCompressedDataUrl } from "@/lib/social";
 import { addCustomEpisode, deleteCustomEpisode, type CustomCategory } from "@/lib/custom-anime";
 
-export const Route = createFileRoute("/admin/upload-anime")({
+export const Route = createFileRoute("/upload-anime")({
   component: AdminUploadAnime,
 });
 
