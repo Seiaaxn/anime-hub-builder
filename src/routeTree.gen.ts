@@ -9,38 +9,276 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TrendingRouteImport } from './routes/trending'
+import { Route as TosRouteImport } from './routes/tos'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as DmcaRouteImport } from './routes/dmca'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WatchEpisodeIdRouteImport } from './routes/watch.$episodeId'
+import { Route as UUidRouteImport } from './routes/u.$uid'
+import { Route as ListListIdRouteImport } from './routes/list.$listId'
+import { Route as GenreGenreIdRouteImport } from './routes/genre.$genreId'
+import { Route as ChatPeerIdRouteImport } from './routes/chat.$peerId'
+import { Route as AnimeAnimeIdRouteImport } from './routes/anime.$animeId'
+import { Route as AdminUploadAnimeRouteImport } from './routes/admin.upload-anime'
+import { Route as UUidFollowingRouteImport } from './routes/u.$uid.following'
+import { Route as UUidFollowersRouteImport } from './routes/u.$uid.followers'
 
+const TrendingRoute = TrendingRouteImport.update({
+  id: '/trending',
+  path: '/trending',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TosRoute = TosRouteImport.update({
+  id: '/tos',
+  path: '/tos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DmcaRoute = DmcaRouteImport.update({
+  id: '/dmca',
+  path: '/dmca',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WatchEpisodeIdRoute = WatchEpisodeIdRouteImport.update({
+  id: '/watch/$episodeId',
+  path: '/watch/$episodeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UUidRoute = UUidRouteImport.update({
+  id: '/u/$uid',
+  path: '/u/$uid',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListListIdRoute = ListListIdRouteImport.update({
+  id: '/list/$listId',
+  path: '/list/$listId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GenreGenreIdRoute = GenreGenreIdRouteImport.update({
+  id: '/genre/$genreId',
+  path: '/genre/$genreId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatPeerIdRoute = ChatPeerIdRouteImport.update({
+  id: '/chat/$peerId',
+  path: '/chat/$peerId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimeAnimeIdRoute = AnimeAnimeIdRouteImport.update({
+  id: '/anime/$animeId',
+  path: '/anime/$animeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminUploadAnimeRoute = AdminUploadAnimeRouteImport.update({
+  id: '/upload-anime',
+  path: '/upload-anime',
+  getParentRoute: () => AdminRoute,
+} as any)
+const UUidFollowingRoute = UUidFollowingRouteImport.update({
+  id: '/following',
+  path: '/following',
+  getParentRoute: () => UUidRoute,
+} as any)
+const UUidFollowersRoute = UUidFollowersRouteImport.update({
+  id: '/followers',
+  path: '/followers',
+  getParentRoute: () => UUidRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/dmca': typeof DmcaRoute
+  '/home': typeof HomeRoute
+  '/search': typeof SearchRoute
+  '/tos': typeof TosRoute
+  '/trending': typeof TrendingRoute
+  '/admin/upload-anime': typeof AdminUploadAnimeRoute
+  '/anime/$animeId': typeof AnimeAnimeIdRoute
+  '/chat/$peerId': typeof ChatPeerIdRoute
+  '/genre/$genreId': typeof GenreGenreIdRoute
+  '/list/$listId': typeof ListListIdRoute
+  '/u/$uid': typeof UUidRouteWithChildren
+  '/watch/$episodeId': typeof WatchEpisodeIdRoute
+  '/u/$uid/followers': typeof UUidFollowersRoute
+  '/u/$uid/following': typeof UUidFollowingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/dmca': typeof DmcaRoute
+  '/home': typeof HomeRoute
+  '/search': typeof SearchRoute
+  '/tos': typeof TosRoute
+  '/trending': typeof TrendingRoute
+  '/admin/upload-anime': typeof AdminUploadAnimeRoute
+  '/anime/$animeId': typeof AnimeAnimeIdRoute
+  '/chat/$peerId': typeof ChatPeerIdRoute
+  '/genre/$genreId': typeof GenreGenreIdRoute
+  '/list/$listId': typeof ListListIdRoute
+  '/u/$uid': typeof UUidRouteWithChildren
+  '/watch/$episodeId': typeof WatchEpisodeIdRoute
+  '/u/$uid/followers': typeof UUidFollowersRoute
+  '/u/$uid/following': typeof UUidFollowingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/dmca': typeof DmcaRoute
+  '/home': typeof HomeRoute
+  '/search': typeof SearchRoute
+  '/tos': typeof TosRoute
+  '/trending': typeof TrendingRoute
+  '/admin/upload-anime': typeof AdminUploadAnimeRoute
+  '/anime/$animeId': typeof AnimeAnimeIdRoute
+  '/chat/$peerId': typeof ChatPeerIdRoute
+  '/genre/$genreId': typeof GenreGenreIdRoute
+  '/list/$listId': typeof ListListIdRoute
+  '/u/$uid': typeof UUidRouteWithChildren
+  '/watch/$episodeId': typeof WatchEpisodeIdRoute
+  '/u/$uid/followers': typeof UUidFollowersRoute
+  '/u/$uid/following': typeof UUidFollowingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/dmca'
+    | '/home'
+    | '/search'
+    | '/tos'
+    | '/trending'
+    | '/admin/upload-anime'
+    | '/anime/$animeId'
+    | '/chat/$peerId'
+    | '/genre/$genreId'
+    | '/list/$listId'
+    | '/u/$uid'
+    | '/watch/$episodeId'
+    | '/u/$uid/followers'
+    | '/u/$uid/following'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/dmca'
+    | '/home'
+    | '/search'
+    | '/tos'
+    | '/trending'
+    | '/admin/upload-anime'
+    | '/anime/$animeId'
+    | '/chat/$peerId'
+    | '/genre/$genreId'
+    | '/list/$listId'
+    | '/u/$uid'
+    | '/watch/$episodeId'
+    | '/u/$uid/followers'
+    | '/u/$uid/following'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/dmca'
+    | '/home'
+    | '/search'
+    | '/tos'
+    | '/trending'
+    | '/admin/upload-anime'
+    | '/anime/$animeId'
+    | '/chat/$peerId'
+    | '/genre/$genreId'
+    | '/list/$listId'
+    | '/u/$uid'
+    | '/watch/$episodeId'
+    | '/u/$uid/followers'
+    | '/u/$uid/following'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  DmcaRoute: typeof DmcaRoute
+  HomeRoute: typeof HomeRoute
+  SearchRoute: typeof SearchRoute
+  TosRoute: typeof TosRoute
+  TrendingRoute: typeof TrendingRoute
+  AnimeAnimeIdRoute: typeof AnimeAnimeIdRoute
+  ChatPeerIdRoute: typeof ChatPeerIdRoute
+  GenreGenreIdRoute: typeof GenreGenreIdRoute
+  ListListIdRoute: typeof ListListIdRoute
+  UUidRoute: typeof UUidRouteWithChildren
+  WatchEpisodeIdRoute: typeof WatchEpisodeIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/trending': {
+      id: '/trending'
+      path: '/trending'
+      fullPath: '/trending'
+      preLoaderRoute: typeof TrendingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tos': {
+      id: '/tos'
+      path: '/tos'
+      fullPath: '/tos'
+      preLoaderRoute: typeof TosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dmca': {
+      id: '/dmca'
+      path: '/dmca'
+      fullPath: '/dmca'
+      preLoaderRoute: typeof DmcaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +286,108 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/watch/$episodeId': {
+      id: '/watch/$episodeId'
+      path: '/watch/$episodeId'
+      fullPath: '/watch/$episodeId'
+      preLoaderRoute: typeof WatchEpisodeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/u/$uid': {
+      id: '/u/$uid'
+      path: '/u/$uid'
+      fullPath: '/u/$uid'
+      preLoaderRoute: typeof UUidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/list/$listId': {
+      id: '/list/$listId'
+      path: '/list/$listId'
+      fullPath: '/list/$listId'
+      preLoaderRoute: typeof ListListIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/genre/$genreId': {
+      id: '/genre/$genreId'
+      path: '/genre/$genreId'
+      fullPath: '/genre/$genreId'
+      preLoaderRoute: typeof GenreGenreIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat/$peerId': {
+      id: '/chat/$peerId'
+      path: '/chat/$peerId'
+      fullPath: '/chat/$peerId'
+      preLoaderRoute: typeof ChatPeerIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anime/$animeId': {
+      id: '/anime/$animeId'
+      path: '/anime/$animeId'
+      fullPath: '/anime/$animeId'
+      preLoaderRoute: typeof AnimeAnimeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/upload-anime': {
+      id: '/admin/upload-anime'
+      path: '/upload-anime'
+      fullPath: '/admin/upload-anime'
+      preLoaderRoute: typeof AdminUploadAnimeRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/u/$uid/following': {
+      id: '/u/$uid/following'
+      path: '/following'
+      fullPath: '/u/$uid/following'
+      preLoaderRoute: typeof UUidFollowingRouteImport
+      parentRoute: typeof UUidRoute
+    }
+    '/u/$uid/followers': {
+      id: '/u/$uid/followers'
+      path: '/followers'
+      fullPath: '/u/$uid/followers'
+      preLoaderRoute: typeof UUidFollowersRouteImport
+      parentRoute: typeof UUidRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminUploadAnimeRoute: typeof AdminUploadAnimeRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminUploadAnimeRoute: AdminUploadAnimeRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface UUidRouteChildren {
+  UUidFollowersRoute: typeof UUidFollowersRoute
+  UUidFollowingRoute: typeof UUidFollowingRoute
+}
+
+const UUidRouteChildren: UUidRouteChildren = {
+  UUidFollowersRoute: UUidFollowersRoute,
+  UUidFollowingRoute: UUidFollowingRoute,
+}
+
+const UUidRouteWithChildren = UUidRoute._addFileChildren(UUidRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  DmcaRoute: DmcaRoute,
+  HomeRoute: HomeRoute,
+  SearchRoute: SearchRoute,
+  TosRoute: TosRoute,
+  TrendingRoute: TrendingRoute,
+  AnimeAnimeIdRoute: AnimeAnimeIdRoute,
+  ChatPeerIdRoute: ChatPeerIdRoute,
+  GenreGenreIdRoute: GenreGenreIdRoute,
+  ListListIdRoute: ListListIdRoute,
+  UUidRoute: UUidRouteWithChildren,
+  WatchEpisodeIdRoute: WatchEpisodeIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
